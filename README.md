@@ -1,2 +1,4 @@
-# Cinema-Database
-in SQL
+Group Members:
+Saira J. Barlas (me)
+Ben Daan
+Orla Fahy
