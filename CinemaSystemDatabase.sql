@@ -39,7 +39,7 @@ CREATE TABLE Staff
 (
 StaffID NUMBER(6) NOT NULL,
 StaffName VARCHAR2(30) NULL,
-StaffPosition VARCHAR2(10) NULL,
+StaffPosition VARCHAR2(20) NULL,
 CONSTRAINT Staff_PK PRIMARY KEY (StaffID)
 );
 -- Create table Customer - holds data on the cinemas customers
@@ -104,12 +104,12 @@ Customer (CustomerID)
 );
 CREATE TABLE Sale
 (
-SaleID  NUMBER(6) NOT NULL,
+SaleID NUMBER(6) NOT NULL,
 SaleTime VARCHAR2(10) NULL,
 PaymentMethod VARCHAR2(4) NULL,
-SeatNo VARCHAR2(2) NULL,
+SeatNo VARCHAR2(4) NULL,
 TicketType VARCHAR2(10) NULL,
-Price NUMBER(2,2) NULL,
+Price NUMBER(4,2) NULL,
 BookingID NUMBER(6) NOT NULL,
 PerformanceID NUMBER(6) NOT NULL,
 CONSTRAINT Sale_PK PRIMARY KEY (SaleID),
@@ -123,17 +123,19 @@ Performances (PerformanceID)
 INSERT INTO Cinema (CinemaID, CinemaName, CinemaAddress, CinemaPhoneNo,
 BranchRef, NoOfScreens)
 VALUES (1000, 'International Cinema', 'WestEnd complex D19', 83223332, 4, 10);
+
+select * from reviewer;
 --Reviewer Table
 INSERT INTO Reviewer (MovieName, ReviewerID, PriorityRating, Starts)
-VALUES ('Pan', 14378, 6, '2015-09-20');
+VALUES ('Pan', 14378, 6,TO_DATE('2015-09-20', 'yyyy-mm-dd'));
 INSERT INTO Reviewer (MovieName, ReviewerID, PriorityRating, Starts)
-VALUES ('The Martian', 15378, 9, '2015-09-11');
+VALUES ('The Martian', 15378, 9,TO_DATE('2015-09-11', 'yyyy-mm-dd'));
 INSERT INTO Reviewer (MovieName, ReviewerID, PriorityRating, Starts)
-VALUES ('Sicario', 178, 8, '2015-09-19');
+VALUES ('Sicario', 178, 8,TO_DATE( '2015-09-19', 'yyyy-mm-dd'));
 INSERT INTO Reviewer (MovieName, ReviewerID, PriorityRating, Starts)
-VALUES ('Inside Out', 12658, 10, '2015-09-24');
+VALUES ('Inside Out', 12658, 10,TO_DATE('2015-09-24', 'yyyy-mm-dd'));
 INSERT INTO Reviewer (MovieName, ReviewerID, PriorityRating, Starts)
-VALUES ('The Last Witch Hunter', 58, 6, '2015-09-18');
+VALUES ('The Last Witch Hunter', 58, 6,TO_DATE('2015-09-18', 'yyyy-mm-dd'));
 --Staff Table
 INSERT INTO Staff (StaffID , StaffName, StaffPosition)
 VALUES (2000, 'Ben' , 'Cinema Operative');
@@ -165,15 +167,15 @@ CustomerEmail, Membership)
 VALUES (904, 'Gavin Morris', '0879874501', 'GavinMorris@gmail.com', '0');
 --Movie Table
 INSERT INTO Movie (MovieID, MovieRating, RunTime, StartDate, EndDate, MovieName)
-VALUES (601, 'PG', 111, '2015-09-20', '2015-10-20', 'Pan');
-INSERT INTO Movie (MovieID, MovieRating, Duration, StartDate, EndDate, MovieName)
-VALUES (602, 'PG13', 141, '2015-09-11', '2015-10-11', 'The Martian');
-INSERT INTO Movie (MovieID, MovieRating, Duration, StartDate, EndDate, MovieName)
-VALUES (603, '15', 121, '2015-09-19', '2015-10-19', 'Sicario');
-INSERT INTO Movie (MovieID, MovieRating, Duration, StartDate, EndDate, MovieName)
-VALUES (604, 'G', 94, '2015-09-24', '2015-10-24', 'Inside Out');
-INSERT INTO Movie (MovieID, MovieRating, Duration, StartDate, EndDate, MovieName)
-VALUES (605, '12A', 106, '2015-09-18', '2015-10-18', 'The Last Witch Hunter');
+VALUES (601, 'PG', 111,TO_DATE('2015-09-20', 'yyyy-mm-dd'),TO_DATE('2015-10-20', 'yyyy-mm-dd'), 'Pan');
+INSERT INTO Movie (MovieID, MovieRating, RunTime, StartDate, EndDate, MovieName)
+VALUES (602, 'PG13', 141,TO_DATE('2015-09-11', 'yyyy-mm-dd'),TO_DATE('2015-10-11', 'yyyy-mm-dd'), 'The Martian');
+INSERT INTO Movie (MovieID, MovieRating, RunTime, StartDate, EndDate, MovieName)
+VALUES (603, '15', 121,TO_DATE('2015-09-19', 'yyyy-mm-dd'),TO_DATE('2015-10-19', 'yyyy-mm-dd') , 'Sicario');
+INSERT INTO Movie (MovieID, MovieRating, RunTime, StartDate, EndDate, MovieName)
+VALUES (604, 'G', 94,TO_DATE('2015-09-24', 'yyyy-mm-dd') ,TO_DATE( '2015-10-24', 'yyyy-mm-dd'), 'Inside Out');
+INSERT INTO Movie (MovieID, MovieRating, RunTime, StartDate, EndDate, MovieName)
+VALUES (605, '12A', 106,TO_DATE('2015-09-18', 'yyyy-mm-dd') ,TO_DATE( '2015-10-18', 'yyyy-mm-dd'), 'The Last Witch Hunter');
 --Screen table
 INSERT INTO Screen (ScreenNo, CinemaId, ScreenCapacity)
 VALUES (1, 1000, 250);
@@ -199,43 +201,42 @@ VALUES (6727, '19:00:00', '13:46:00', 5, 605);
 --Booking Table
 INSERT INTO Booking (BookingID, BookingDate, BookingReference, BookingTime,
 CustomerID)
-VALUES (1000, '2015-09-22', 22345, '17:49:00', 901);
+VALUES (1000,TO_DATE('2015-09-22', 'yyyy-mm-dd') , 22345,'17:49:00', 901);
 INSERT INTO Booking (BookingID, BookingDate, BookingReference, BookingTime,
 CustomerID)
-VALUES (1001, '2015-09-30', 22346, '12:00:00', 903);
+VALUES (1001,TO_DATE( '2015-09-30', 'yyyy-mm-dd'), 22346, '12:00:00', 903);
 INSERT INTO Booking (BookingID, BookingDate, BookingReference, BookingTime,
 CustomerID)
-VALUES (1002, '2015-10-07', 22347, '13:10:00', 900);
+VALUES (1002,TO_DATE('2015-10-07', 'yyyy-mm-dd') , 22347, '13:10:00', 900);
 INSERT INTO Booking (BookingID, BookingDate, BookingReference, BookingTime,
 CustomerID)
-VALUES (1003, '2015-10-01', 22348, '13:11:00', 902);
+VALUES (1003,TO_DATE('2015-10-01', 'yyyy-mm-dd') , 22348, '13:11:00', 902);
 INSERT INTO Booking (BookingID, BookingDate, BookingReference, BookingTime,
 CustomerID)
-VALUES (1004, '2015-10-11', 22349, '18:30:00', 904);
+VALUES (1004,TO_DATE( '2015-10-11', 'yyyy-mm-dd'), 22349, '18:30:00', 904);
 --Sales table
 INSERT INTO Sale (SaleID, SaleTime, PaymentMethod, SeatNo, TicketType, Price,
 BookingID, PerformanceID)
-VALUES (1000, '13:24:00', 'cash', 'C7', 'Standard', '7.50', NULL, 6723);
+VALUES  (1000, '13:24:00', 'cash', 'C7', 'Standard', 7.50, 1000, 6723);
 INSERT INTO Sale (SaleID, SaleTime, PaymentMethod, SeatNo, TicketType, Price,
 BookingID, PerformanceID)
-VALUES (1001, '17:49:00', 'card', 'B6', 'Standard', '7.50', 1000, 6724);
+VALUES (1001, '17:49:00', 'card', 'B6', 'Standard', 7.50, 1000, 6724);
 INSERT INTO Sale (SaleID, SaleTime, PaymentMethod, SeatNo, TicketType, Price,
 BookingID, PerformanceID)
-VALUES (1002, '12:00:00', 'card', 'A10', 'Premier', '19.99', 1001, 6725);
+VALUES (1002, '12:00:00', 'card', 'A10', 'Premier', 19.99, 1001, 6725);
 INSERT INTO Sale (SaleID, SaleTime, PaymentMethod, SeatNo, TicketType, Price,
 BookingID, PerformanceID)
-VALUES (1004, '13:10:00', 'card', 'B9', 'Standard', '7.50', 1002, 6726);
+VALUES (1004, '13:10:00', 'card', 'B9', 'Standard', 7.50, 1002, 6726);
 INSERT INTO Sale (SaleID, SaleTime, PaymentMethod, SeatNo, TicketType, Price,
 BookingID, PerformanceID)
-VALUES (1005, '13:11:00', 'card', 'B10', 'Standard', '7.50', 1003, 6726);
+VALUES (1005, '13:11:00', 'card', 'B10', 'Standard', 7.50, 1003, 6726);
 INSERT INTO Sale (SaleID, SaleTime, PaymentMethod, SeatNo, TicketType, Price,
 BookingID, PerformanceID)
-VALUES (1005, '18:30:00', 'card', 'D6', 'Standard', '7.50', 1004, 6727);
+VALUES (1006, '18:30:00', 'card', 'D6', 'Standard', 7.50, 1004, 6727);
 -- Commit included to persist the data
 commit;
-
 --Grants
-/*GRANT DELETE, INSERT ON Movie TO ofahy;
-GRANT DELETE, UPDATE, INSERT, JOIN ON Performance TO ofahy;
+GRANT DELETE, INSERT ON Movie TO ofahy;
+GRANT DELETE, UPDATE, INSERT ON Performances TO ofahy;
 GRANT INSERT ON Reviewer TO sbarlas;
-GRANT DELETE, UPDATE ON Performance TO bdann;*/
+GRANT DELETE, UPDATE ON Performances TO bdaan;
